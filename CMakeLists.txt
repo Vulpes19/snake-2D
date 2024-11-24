@@ -9,9 +9,11 @@ include_directories(${SDL2_INCLUDE_DIRS})
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 set(SOURCES
-src/main.cpp
-src/Game.cpp
-src/ErrorHandler.cpp
+    src/main.cpp
+    src/Game.cpp
+    src/ErrorHandler.cpp
+    src/Grid.cpp
+    src/Vector.cpp
 )
 
 add_executable(snake-2d ${SOURCES})
