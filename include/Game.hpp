@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <SDL2/SDL.h>
+#include "Grid.hpp"
+#include "Texture.hpp"
 
 class Game {
     public:
@@ -14,6 +16,7 @@ class Game {
     private:
 		SDL_Window* window = nullptr;
 		SDL_Renderer* renderer = nullptr;
+        Grid    *grid = nullptr;
 		SDL_Event	event;
 		Uint32	prevTime;
 		Uint32	currTime;

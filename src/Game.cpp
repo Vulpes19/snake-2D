@@ -1,8 +1,8 @@
 #include "Game.hpp"
 #include "ErrorHandler.hpp"
 
-#define WIDTH 600
-#define HEIGHT 300
+#define WIDTH 800
+#define HEIGHT 600
 
 Game::Game(void) {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
@@ -23,6 +23,8 @@ Game::Game(void) {
 
 	//init game stuff
 	running = true;
+	grid = new Grid();
+	TextureManager::getInstance()->loadTextures(renderer);
 }
 
 Game::~Game(void) {
@@ -43,11 +45,13 @@ void    Game::handleInput(void) {
 }
 
 void    Game::update(void) {
-
+	grid->checkCollision();
+	grid->update();
 }
 
 void    Game::render(void) {
     SDL_RenderClear(renderer);
+	grid->render(renderer);
 	SDL_RenderPresent(renderer);
 }
 
