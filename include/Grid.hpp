@@ -5,7 +5,10 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include "Texture.hpp"
 #include "ErrorHandler.hpp"
+
+#define TILE 20
 
 class Grid {
     public:
@@ -16,5 +19,5 @@ class Grid {
         void	render(SDL_Renderer *);
     private:
         std::vector< std::vector<char> > grid;
-        const char *filePath = "assets/grid.txt";
+        const char *filePath = "./assets/grid.txt";
 };

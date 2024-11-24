@@ -24,6 +24,7 @@ Game::Game(void) {
 	//init game stuff
 	running = true;
 	grid = new Grid();
+	TextureManager::getInstance()->loadTextures(renderer);
 }
 
 Game::~Game(void) {
@@ -49,8 +50,8 @@ void    Game::update(void) {
 }
 
 void    Game::render(void) {
-	grid->render(renderer);
     SDL_RenderClear(renderer);
+	grid->render(renderer);
 	SDL_RenderPresent(renderer);
 }
 

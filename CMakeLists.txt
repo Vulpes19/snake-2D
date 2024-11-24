@@ -14,6 +14,7 @@ set(SOURCES
     src/ErrorHandler.cpp
     src/Grid.cpp
     src/Vector.cpp
+    src/Texture.cpp
 )
 
 add_executable(snake-2d ${SOURCES})

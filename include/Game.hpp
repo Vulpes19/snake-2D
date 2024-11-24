@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include "Grid.hpp"
+#include "Texture.hpp"
 
 class Game {
     public:
