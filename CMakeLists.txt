@@ -15,6 +15,12 @@ set(SOURCES
     src/Grid.cpp
     src/Vector.cpp
     src/Texture.cpp
+    src/Player.cpp
+    src/InputManager.cpp
+    src/InputDetector.cpp
+    src/GamePlay.cpp
+    src/StatesManager.cpp
+    src/GameObject.cpp
 )
 
 add_executable(snake-2d ${SOURCES})

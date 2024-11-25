@@ -5,18 +5,29 @@
 #include "Vector.hpp"
 #include "Texture.hpp"
 #include <deque>
+#include "InputObserver.hpp"
+#include "InputDetector.hpp"
+#include "GameObject.hpp"
 
 #define TILE 20
 
-class Player {
+enum DIRECTION {
+    RIGHT,
+    LEFT,
+    TOP,
+    DOWN
+};
+
+class Player : public InputObserver, public GameObject {
     public:
         Player(void);
         ~Player(void);
-        void handleInput(void);
-        void update(void);
-        void render(SDL_Renderer *);
-    private:
+        void    keyDown(SDL_Scancode , double , InputManager*, SDL_Renderer*) override;
+        void	mouseMove(Uint8, InputManager* = nullptr, SDL_Renderer* = nullptr) override {};
+        void    update(void) override;
+        void    render(SDL_Renderer *) override;
+    protected:
         std::deque<Vector>  snakePos;
-        SDL_Texture         *playerTexture = nullptr;
-        size_t              size = 1;
+        DIRECTION direction;
+        size_t              size = 2;
 };
