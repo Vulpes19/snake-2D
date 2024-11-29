@@ -23,8 +23,14 @@ Game::Game(void) {
 
 	//init game stuff
 	running = true;
-	grid = new Grid();
 	TextureManager::getInstance()->loadTextures(renderer);
+	input = new InputManager();
+	StatesManager::getInstance()->addState(new GamePlay(input, renderer));
+	InputObserver* stateObserver = dynamic_cast<InputObserver*>(StatesManager::getInstance()->getCurrentStateInstance());
+	if (stateObserver)
+		input->addObserver(stateObserver);
+	else
+		throw(ErrorHandler("Can't cast state to an observer, causes the input to not work: ", __FILE__, __LINE__));
 }
 
 Game::~Game(void) {
@@ -40,18 +46,31 @@ void    Game::handleInput(void) {
 			case SDL_QUIT:
 				running = false;
 				break;
+			case SDL_KEYDOWN:
+				input->notifyOnKeyDown(event.key.keysym.scancode, deltaTime, renderer);
+				break;
+			case SDL_MOUSEMOTION:
+				input->notifyOnMouseMove(0, renderer);
+			case SDL_MOUSEBUTTONDOWN:
+				input->notifyOnMouseMove(event.button.button, renderer);
 		}
 	}
 }
 
 void    Game::update(void) {
-	grid->checkCollision();
-	grid->update();
+	if (StatesManager::getInstance()->getCurrentState() == NoState)
+	{
+		// TextureManager::clean();
+		// FontManager::clean();
+		running = false;
+	}
+	StatesManager::getInstance()->update(deltaTime);
 }
 
 void    Game::render(void) {
     SDL_RenderClear(renderer);
-	grid->render(renderer);
+	STATES currentState = StatesManager::getInstance()->getCurrentState();
+	StatesManager::getInstance()->render(renderer);
 	SDL_RenderPresent(renderer);
 }
 
