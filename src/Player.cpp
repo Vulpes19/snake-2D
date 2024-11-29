@@ -77,8 +77,8 @@ void    Player::render(SDL_Renderer *renderer) {
     src.h = dest.h = TILE;
 
     for (auto position : snakePos) {
-        dest.x = std::round(position.getX());
-        dest.y = std::round(position.getY());
+        dest.x = (int)std::round(position.getX());
+        dest.y = (int)std::round(position.getY());
         SDL_RenderCopyEx(renderer, texture, &src, &dest, 0, 0, SDL_FLIP_NONE);
     }
 }
