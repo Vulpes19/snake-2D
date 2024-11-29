@@ -29,5 +29,5 @@ class Player : public InputObserver, public GameObject {
     protected:
         std::deque<Vector>  snakePos;
         DIRECTION direction;
-        size_t              size = 2;
+        size_t              size = 1;
 };
