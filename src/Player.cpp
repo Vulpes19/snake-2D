@@ -37,6 +37,13 @@ void    Player::update(void) {
     const int frameDelay = 100;
     Vector position = snakePos.front();
 
+    COLLISION collisionType = observer->checkCollision(position);
+    std::cout << collisionType << std::endl;
+    if (collisionType == COLLISION::FOOD)
+        size += 1;
+    else if (collisionType == COLLISION:: WALL)
+        return ;
+    
     switch (direction)
     {
     case DIRECTION::TOP:
@@ -81,4 +88,12 @@ void    Player::render(SDL_Renderer *renderer) {
         dest.y = (int)std::round(position.getY());
         SDL_RenderCopyEx(renderer, texture, &src, &dest, 0, 0, SDL_FLIP_NONE);
     }
+}
+
+void    Player::addObserver(CollisionObserver *obs) {
+    observer = obs;
+}
+
+void    Player::eraseObserver(void) {
+    delete observer;
 }

@@ -7,6 +7,9 @@
 #include "StatesManager.hpp"
 #include "GamePlay.hpp"
 
+#define WIDTH 800
+#define HEIGHT 600
+
 class Game {
     public:
         Game(void);

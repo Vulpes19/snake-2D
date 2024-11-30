@@ -8,6 +8,12 @@ GamePlay::GamePlay(InputManager *input, SDL_Renderer *renderer)
 	TextureManager::getInstance()->loadTextures(renderer);
 	//creating player
 	player = new Player();
+	//add grid as observer to player
+	Player *playerCollider = dynamic_cast<Player*>(player);
+	if (playerCollider)
+		playerCollider->addObserver(grid);
+	else
+		throw(ErrorHandler("casting error, causes the collision to not work: ", __FILE__, __LINE__));
 	//add player as an observer to input
 	InputObserver* playerObserver = dynamic_cast<InputObserver*>(player);
 	if (playerObserver)

@@ -4,6 +4,7 @@ project(snake-2d)
 
 find_package(SDL2 CONFIG REQUIRED)
 find_package(SDL2_image CONFIG REQUIRED)
+find_package(SDL2_ttf CONFIG REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
@@ -34,6 +35,7 @@ target_link_libraries(snake-2d PRIVATE
     SDL2::SDL2main
     SDL2::SDL2
     SDL2_image::SDL2_image
+    SDL2_ttf::SDL2_ttf
 )
 
 target_include_directories(snake-2d PRIVATE ${CMAKE_SOURCE_DIR}/include)

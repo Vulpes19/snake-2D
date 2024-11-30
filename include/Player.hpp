@@ -8,6 +8,7 @@
 #include "InputObserver.hpp"
 #include "InputDetector.hpp"
 #include "GameObject.hpp"
+#include "CollisionObserver.hpp"
 
 #define TILE 20
 
@@ -26,8 +27,11 @@ class Player : public InputObserver, public GameObject {
         void	mouseMove(Uint8, InputManager* = nullptr, SDL_Renderer* = nullptr) override {};
         void    update(void) override;
         void    render(SDL_Renderer *) override;
+        void    addObserver(CollisionObserver *);
+        void    eraseObserver(void);
     protected:
         std::deque<Vector>  snakePos;
         DIRECTION direction;
         size_t              size = 1;
+        CollisionObserver* observer = nullptr;
 };
