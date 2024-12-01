@@ -7,17 +7,21 @@
 #include <string>
 #include "Texture.hpp"
 #include "ErrorHandler.hpp"
+#include "CollisionObserver.hpp"
 
 #define TILE 20
+#define WIDTH 800
+#define HEIGHT 600
 
-class Grid {
+class Grid : public CollisionObserver {
     public:
         Grid(void);
         ~Grid(void);
-        void	checkCollision(void);
-        void	update(void);
-        void	render(SDL_Renderer *);
+        COLLISION	checkCollision(Vector) override;
+        void	    update(void);
+        void	    render(SDL_Renderer *);
     private:
         std::vector< std::vector<char> > grid;
-        const char *filePath = "./assets/grid.txt";
+        const char                       *filePath = "./assets/grid.txt";
+        Vector  foodSpawnPoint;
 };

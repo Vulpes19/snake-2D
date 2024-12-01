@@ -6,7 +6,7 @@ GameObject::GameObject(std::string textureName) : textureName(textureName)
 GameObject::~GameObject(void)
 {}
 
-void	GameObject::update(void)
+void	GameObject::update(size_t &)
 {}
 
 void	GameObject::render(SDL_Renderer* renderer)

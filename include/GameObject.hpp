@@ -20,7 +20,7 @@ class GameObject
 	public:
 		GameObject(std::string);
 		~GameObject(void);
-		virtual void	update(void);
+		virtual void	update(size_t &);
 		virtual void	render(SDL_Renderer *);
 	protected:
 		Vector	position;

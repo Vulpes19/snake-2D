@@ -1,0 +1,63 @@
+#include "UILabel.hpp"
+
+UILabel::UILabel(void)
+{}
+
+UILabel::~UILabel(void)
+{}
+
+void	UILabel::addButtonType(std::string ID, int w, int h, SDL_Color color)
+{
+	Button *button = new Button(h, w, color);
+	labels[ID] = button;
+}
+
+void	UILabel::deleteButtonType(std::string ID)
+{
+	auto it = labels.find(ID);
+	if (it != labels.end())
+	{
+		delete it->second;
+		labels.erase(ID);
+	}
+}
+
+void	UILabel::render(int x, int y, std::string ID, std::string content, std::string font, SDL_Renderer* renderer, BUTTON_STATE state)
+{
+	auto label = labels.find(ID);
+	if (label == labels.end())
+		throw(ErrorHandler("Can't find label with ID: " + ID, __FILE__, __LINE__));
+    //coloring the button label
+	SDL_Rect rect = { x, y, label->second->width, label->second->height };
+	SDL_SetRenderDrawColor(renderer,
+		label->second->color.r,
+		label->second->color.g,
+		label->second->color.b,
+		label->second->color.a);
+	//drawing the button rect
+	SDL_RenderFillRect(renderer, &rect);
+    //getting the font
+	TTF_Font* fontPtr = FontManager::getInstance()->getFont(font);
+	if (fontPtr == NULL)
+		throw(ErrorHandler("Can't find font with ID: " + font, __FILE__, __LINE__));
+	SDL_Color textColor = { 0, 0, 0, 255 };
+	if (state == BUTTON_STATE::FOCUS_ON)
+		textColor = { 255, 255, 255, 255 };
+	SDL_Surface* textSurface = TTF_RenderText_Solid(fontPtr, content.c_str(), textColor);
+	if (textSurface == NULL)
+		throw(ErrorHandler("Error rendering text: " + std::string(TTF_GetError()), __FILE__, __LINE__));
+	SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+	if (textTexture == NULL)
+		throw(ErrorHandler("Error creating text texture from surface: " + std::string(TTF_GetError()), __FILE__, __LINE__));
+    int textWidth = textSurface->w;
+    int textHeight = textSurface->h;
+	SDL_FreeSurface(textSurface);
+
+    //getting text position in the middle of UI label
+	int midX = x + (80 - textWidth) / 2;
+    int midY = y + (20 - textHeight) / 2;
+	SDL_Rect textRect = { midX, midY, textWidth, textHeight };
+	SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_DestroyTexture(textTexture);
+}

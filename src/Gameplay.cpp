@@ -5,19 +5,32 @@ GamePlay::GamePlay(InputManager *input, SDL_Renderer *renderer)
 	stateName = GamePlayState;
 
 	grid = new Grid();
+	label = new UILabel();
 	TextureManager::getInstance()->loadTextures(renderer);
 	//creating player
 	player = new Player();
+	//add grid as observer to player
+	Player *playerCollider = dynamic_cast<Player*>(player);
+	if (playerCollider)
+		playerCollider->addObserver(grid);
+	else
+		throw(ErrorHandler("casting error, causes the collision to not work: ", __FILE__, __LINE__));
 	//add player as an observer to input
 	InputObserver* playerObserver = dynamic_cast<InputObserver*>(player);
 	if (playerObserver)
 		input->addObserver(playerObserver);
 	else
 		throw(ErrorHandler("Can't cast player to an observer, causes the input to not work: ", __FILE__, __LINE__));
+	label->addButtonType("GamePlay", 80, 20, { 0, 0, 0, 255 });
 }
 
 GamePlay::~GamePlay(void)
-{}
+{
+	label->deleteButtonType("GamePlay");
+	delete label;
+	// delete grid;
+	// delete player;
+}
 
 void	GamePlay::keyDown(SDL_Scancode key, double deltaTime, InputManager* input, SDL_Renderer* renderer)
 {
@@ -52,11 +65,12 @@ void	GamePlay::handleInput(void)
 void	GamePlay::update(double deltaTime)
 {
 	grid->update();
-	player->update();;
+	player->update(score);;
 }
 
 void	GamePlay::render(SDL_Renderer *renderer)
 {
 	grid->render(renderer);
 	player->render(renderer);
+	label->render((WIDTH - 80) / 2, 0, "GamePlay", "score: " + std::to_string(score), "SIXTY", renderer, FOCUS_ON);
 }

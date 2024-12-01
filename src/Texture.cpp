@@ -40,7 +40,7 @@ void    TextureManager::loadTextures(SDL_Renderer *renderer) {
         if (texture == NULL)
             throw(ErrorHandler("SDL failed to load texture from surface: " + std::string(IMG_GetError()), __FILE__, __LINE__));
         std::string key = std::string(texturesPaths[i]).substr(9, std::string(texturesPaths[i]).length() - 13);
-        std::cout << key << std::endl;
+        // std::cout << key << std::endl;
         textures[key] = texture;
     }
     surfaces.clear();
