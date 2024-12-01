@@ -6,6 +6,7 @@
 #include "InputManager.hpp"
 #include "StatesManager.hpp"
 #include "Grid.hpp"
+#include "UILabel.hpp"
 
 class GamePlay : public GameState, public InputObserver
 {
@@ -18,6 +19,8 @@ class GamePlay : public GameState, public InputObserver
 		void update(double = 0) override;
 		void render(SDL_Renderer *) override;
 	private:
-		Grid* grid = nullptr;
+		Grid* 		grid = nullptr;
 		GameObject* player = nullptr;
+		UILabel*	label = nullptr;
+		size_t		score = 0;
 };

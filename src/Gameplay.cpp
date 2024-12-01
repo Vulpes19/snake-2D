@@ -5,6 +5,7 @@ GamePlay::GamePlay(InputManager *input, SDL_Renderer *renderer)
 	stateName = GamePlayState;
 
 	grid = new Grid();
+	label = new UILabel();
 	TextureManager::getInstance()->loadTextures(renderer);
 	//creating player
 	player = new Player();
@@ -20,10 +21,16 @@ GamePlay::GamePlay(InputManager *input, SDL_Renderer *renderer)
 		input->addObserver(playerObserver);
 	else
 		throw(ErrorHandler("Can't cast player to an observer, causes the input to not work: ", __FILE__, __LINE__));
+	label->addButtonType("GamePlay", 80, 20, { 136, 8, 8, 255 });
 }
 
 GamePlay::~GamePlay(void)
-{}
+{
+	label->deleteButtonType("GamePlay");
+	delete label;
+	// delete grid;
+	// delete player;
+}
 
 void	GamePlay::keyDown(SDL_Scancode key, double deltaTime, InputManager* input, SDL_Renderer* renderer)
 {
@@ -65,4 +72,5 @@ void	GamePlay::render(SDL_Renderer *renderer)
 {
 	grid->render(renderer);
 	player->render(renderer);
+	label->render(300, 10, "GamePlay", "test", "SIXTY", renderer, FOCUS_OFF);
 }

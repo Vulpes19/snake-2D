@@ -5,7 +5,7 @@ Game::Game(void) {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 		throw(ErrorHandler("SDL failed to initialise: " + std::string(SDL_GetError()), __FILE__, __LINE__));
 	
-	window = SDL_CreateWindow("Raptor Island",
+	window = SDL_CreateWindow("Snake",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
 		WIDTH,
