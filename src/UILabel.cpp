@@ -54,8 +54,8 @@ void	UILabel::render(int x, int y, std::string ID, std::string content, std::str
 	SDL_FreeSurface(textSurface);
 
     //getting text position in the middle of UI label
-	int midX = (WIDTH - textWidth) / 2;
-    int midY = TILE / 2 - textHeight / 2;  
+	int midX = x + (80 - textWidth) / 2;
+    int midY = y + (20 - textHeight) / 2;
 	SDL_Rect textRect = { midX, midY, textWidth, textHeight };
 	SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);

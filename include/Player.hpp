@@ -25,7 +25,7 @@ class Player : public InputObserver, public GameObject {
         ~Player(void);
         void    keyDown(SDL_Scancode , double , InputManager*, SDL_Renderer*) override;
         void	mouseMove(Uint8, InputManager* = nullptr, SDL_Renderer* = nullptr) override {};
-        void    update(void) override;
+        void    update(size_t &) override;
         void    render(SDL_Renderer *) override;
         void    addObserver(CollisionObserver *);
         void    eraseObserver(void);

@@ -33,14 +33,17 @@ void	Player::keyDown(SDL_Scancode key, double deltaTime, InputManager*, SDL_Rend
 	}
 }
 
-void    Player::update(void) {
+void    Player::update(size_t &score) {
     const int frameDelay = 100;
     Vector position = snakePos.front();
 
     COLLISION collisionType = observer->checkCollision(position);
-    std::cout << collisionType << std::endl;
+    // std::cout << collisionType << std::endl;
     if (collisionType == COLLISION::FOOD)
+    {
         size += 1;
+        score += 1;
+    }
     else if (collisionType == COLLISION:: WALL)
         return ;
     

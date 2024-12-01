@@ -21,7 +21,7 @@ GamePlay::GamePlay(InputManager *input, SDL_Renderer *renderer)
 		input->addObserver(playerObserver);
 	else
 		throw(ErrorHandler("Can't cast player to an observer, causes the input to not work: ", __FILE__, __LINE__));
-	label->addButtonType("GamePlay", 80, 20, { 136, 8, 8, 255 });
+	label->addButtonType("GamePlay", 80, 20, { 0, 0, 0, 255 });
 }
 
 GamePlay::~GamePlay(void)
@@ -65,12 +65,12 @@ void	GamePlay::handleInput(void)
 void	GamePlay::update(double deltaTime)
 {
 	grid->update();
-	player->update();;
+	player->update(score);;
 }
 
 void	GamePlay::render(SDL_Renderer *renderer)
 {
 	grid->render(renderer);
 	player->render(renderer);
-	label->render(300, 10, "GamePlay", "test", "SIXTY", renderer, FOCUS_OFF);
+	label->render((WIDTH - 80) / 2, 0, "GamePlay", "score: " + std::to_string(score), "SIXTY", renderer, FOCUS_ON);
 }
