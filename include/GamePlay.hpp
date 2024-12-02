@@ -7,6 +7,7 @@
 #include "StatesManager.hpp"
 #include "Grid.hpp"
 #include "UILabel.hpp"
+#include "PauseMenu.hpp"
 
 class GamePlay : public GameState, public InputObserver
 {
@@ -21,6 +22,5 @@ class GamePlay : public GameState, public InputObserver
 	private:
 		Grid* 		grid = nullptr;
 		GameObject* player = nullptr;
-		UILabel*	label = nullptr;
 		size_t		score = 0;
 };

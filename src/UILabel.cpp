@@ -22,7 +22,7 @@ void	UILabel::deleteButtonType(std::string ID)
 	}
 }
 
-void	UILabel::render(int x, int y, std::string ID, std::string content, std::string font, SDL_Renderer* renderer, BUTTON_STATE state)
+void	UILabel::render(int x, int y, int textSize, std::string ID, std::string content, std::string font, SDL_Renderer* renderer, BUTTON_STATE state)
 {
 	auto label = labels.find(ID);
 	if (label == labels.end())
@@ -54,9 +54,9 @@ void	UILabel::render(int x, int y, std::string ID, std::string content, std::str
 	SDL_FreeSurface(textSurface);
 
     //getting text position in the middle of UI label
-	int midX = x + (80 - textWidth) / 2;
-    int midY = y + (20 - textHeight) / 2;
-	SDL_Rect textRect = { midX, midY, textWidth, textHeight };
+	int midX = x + (labels[ID]->width - textWidth * textSize) / 2;
+    int midY = y + (labels[ID]->height - textHeight * textSize) / 2;
+	SDL_Rect textRect = { midX, midY, textWidth * textSize, textHeight * textSize };
 	SDL_RenderCopy(renderer, textTexture, NULL, &textRect);
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_DestroyTexture(textTexture);

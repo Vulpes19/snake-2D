@@ -24,7 +24,7 @@ class UILabel
 		~UILabel(void);
 		void	addButtonType(std::string, int, int, SDL_Color);
 		void	deleteButtonType(std::string);
-		void	render(int x, int y, 
+		void	render(int x, int y, int size,
 			std::string ID, std::string content, 
 			std::string font, SDL_Renderer* renderer, BUTTON_STATE);
 	private:
