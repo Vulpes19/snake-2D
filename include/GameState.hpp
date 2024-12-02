@@ -1,6 +1,6 @@
 #pragma once
 
-// #include "UILabel.hpp"
+#include "UILabel.hpp"
 #include <SDL.h>
 
 enum STATES {
@@ -21,6 +21,6 @@ class GameState
 		virtual void	render(SDL_Renderer *) = 0;
 		enum STATES		getStateName(void) const { return (stateName); }
 	protected:
-		// UILabel		label;
+		UILabel		label;
 		enum STATES stateName = NoState;
 };

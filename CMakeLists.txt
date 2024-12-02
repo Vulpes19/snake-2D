@@ -24,6 +24,7 @@ set(SOURCES
     src/GameObject.cpp
     src/FontManager.cpp
     src/UILabel.cpp
+    src/PauseMenu.cpp
 )
 
 add_executable(snake-2d ${SOURCES})

@@ -35,7 +35,7 @@ COLLISION    Grid::checkCollision(Vector playerPos) {
 		&& (grid[row][col] == '2' || grid[row2][col2] == '2' || grid[row][col2] == '2' || grid[row2][col] == '2'))
     {
         std::cout << "ATE IT" << std::endl;
-        grid[foodSpawnPoint.getY() / TILE][foodSpawnPoint.getX() / TILE] = '0';
+        grid[(int)foodSpawnPoint.getY() / TILE][(int)foodSpawnPoint.getX() / TILE] = '0';
         foodSpawnPoint.setX(0.0);
         foodSpawnPoint.setY(0.0);
         return COLLISION::FOOD;
