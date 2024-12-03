@@ -22,8 +22,9 @@ Game::Game(void) {
 	running = true;
 	TextureManager::getInstance()->loadTextures(renderer);
 	input = new InputManager();
-	StatesManager::getInstance()->addState(new GamePlay(input, renderer));
+	StatesManager::getInstance()->addState(new MainMenu());
 	InputObserver* stateObserver = dynamic_cast<InputObserver*>(StatesManager::getInstance()->getCurrentStateInstance());
+	exit(1);
 	if (stateObserver)
 		input->addObserver(stateObserver);
 	else

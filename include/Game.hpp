@@ -5,7 +5,7 @@
 #include "Grid.hpp"
 #include "Texture.hpp"
 #include "StatesManager.hpp"
-#include "GamePlay.hpp"
+#include "MainMenu.hpp"
 
 #define WIDTH 800
 #define HEIGHT 600

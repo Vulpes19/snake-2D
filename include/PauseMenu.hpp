@@ -1,3 +1,5 @@
+#pragma once
+
 #include "GameState.hpp"
 #include "InputObserver.hpp"
 #include "InputDetector.hpp"
