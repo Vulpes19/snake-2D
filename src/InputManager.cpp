@@ -10,7 +10,9 @@ InputManager::~InputManager(void)
 
 void	InputManager::addObserver(InputObserver* newObserver)
 {
+	std::cout << "new observer is added !" << std::endl;
 	observers.push_back(newObserver);
+	std::cout << "number of observers now: " << observers.size() << std::endl;
 }
 
 void	InputManager::eraseObserver(InputObserver* observer)
@@ -18,6 +20,8 @@ void	InputManager::eraseObserver(InputObserver* observer)
 	auto it = std::find(observers.begin(), observers.end(), observer);
     if (it != observers.end())
 	    observers.erase(it);
+	std::cout << "observer is erased !" << std::endl;
+	std::cout << "number of observers now: " << observers.size() << std::endl;
 }
 
 void	InputManager::notifyOnKeyDown(SDL_Scancode key, double deltaTime, SDL_Renderer *renderer)

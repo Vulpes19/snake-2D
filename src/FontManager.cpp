@@ -12,9 +12,7 @@ FontManager* FontManager::getInstance(void)
 FontManager::FontManager(void)
 {
 	if (TTF_Init() == -1)
-	{
 		throw(ErrorHandler("Unable to initialize TTF: " + std::string(TTF_GetError()), __FILE__, __LINE__));
-	}
 	loadFonts();
 }
 

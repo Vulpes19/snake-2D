@@ -63,9 +63,10 @@ void	PauseMenu::mouseMove(Uint8 mouseButton, InputManager* input, SDL_Renderer*)
 		if (mouseButton == SDL_BUTTON_LEFT)
 		{
 			StatesManager::getInstance()->removeState(2, input);
-			//InputObserver* observer = dynamic_cast<InputObserver*>(StatesManager::getInstance()->getCurrentStateInstance());
-			//if (observer)
-				//input->addObserver(observer);
+			std::cout << "********** after **********"<< std::endl;
+			// InputObserver* observer = dynamic_cast<InputObserver*>(StatesManager::getInstance()->getCurrentStateInstance());
+			// if (observer)
+			// 	input->addObserver(observer);
 		}
 	}
 }
@@ -82,6 +83,6 @@ void	PauseMenu::update(double)
 
 void	PauseMenu::render(SDL_Renderer* renderer)
 {
-	label.render((WIDTH - 80) / 2, 300, 2, "PauseMenu", "Resume", "SIXTY", renderer, buttonsState["Resume"]);
-	label.render((WIDTH - 80) / 2, 400, 2, "PauseMenu", "Quit", "SIXTY", renderer, buttonsState["Quit"]);
+	label.render((WIDTH - 100) / 2, 300, 2, "PauseMenu", "Resume", "SIXTY", renderer, buttonsState["Resume"]);
+	label.render((WIDTH - 100) / 2, 400, 2, "PauseMenu", "Quit", "SIXTY", renderer, buttonsState["Quit"]);
 }

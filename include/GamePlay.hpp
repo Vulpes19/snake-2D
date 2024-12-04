@@ -23,4 +23,5 @@ class GamePlay : public GameState, public InputObserver
 		Grid* 		grid = nullptr;
 		GameObject* player = nullptr;
 		size_t		score = 0;
+		InputManager *input = nullptr;
 };

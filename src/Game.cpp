@@ -24,7 +24,6 @@ Game::Game(void) {
 	input = new InputManager();
 	StatesManager::getInstance()->addState(new MainMenu());
 	InputObserver* stateObserver = dynamic_cast<InputObserver*>(StatesManager::getInstance()->getCurrentStateInstance());
-	exit(1);
 	if (stateObserver)
 		input->addObserver(stateObserver);
 	else
@@ -66,6 +65,7 @@ void    Game::update(void) {
 }
 
 void    Game::render(void) {
+	// exit(1);
     SDL_RenderClear(renderer);
 	STATES currentState = StatesManager::getInstance()->getCurrentState();
 	StatesManager::getInstance()->render(renderer);

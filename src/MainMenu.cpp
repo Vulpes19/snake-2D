@@ -2,8 +2,9 @@
 
 MainMenu::MainMenu(void)
 {
+	std::cout << "main menu is pushed" << std::endl;
 	stateName = MainMenuState;
-	label.addButtonType("MainMenu", 80, 200, { 136, 8, 8, 255 });
+	label.addButtonType("MainMenu", 200, 80, { 136, 8, 8, 255 });
 	buttonsState["Play"] = FOCUS_ON;
 	buttonsState["Quit"] = FOCUS_OFF;
 }
@@ -44,7 +45,7 @@ void	MainMenu::mouseMove(Uint8 mouseButton, InputManager* input, SDL_Renderer *r
 {
 	int x, y;
 	SDL_GetMouseState(&x, &y);
-	if (x >= 540 && x <= 740 && y >= 300 && y <= 380 && StatesManager::getInstance()->getCurrentState() == MainMenuState)
+	if (x >= (WIDTH - 200) / 2 && x <= (WIDTH - 200) / 2 + 200 && y >= 300 && y <= 380 && StatesManager::getInstance()->getCurrentState() == MainMenuState)
 	{
 		buttonsState["Play"] = FOCUS_ON;
 		buttonsState["Quit"] = FOCUS_OFF;
@@ -59,7 +60,7 @@ void	MainMenu::mouseMove(Uint8 mouseButton, InputManager* input, SDL_Renderer *r
 				throw(ErrorHandler("Can't cast state to an observer, causes the input to not work: ", __FILE__, __LINE__));
 		}
 	}
-	if (x >= 540 && x <= 740 && y >= 400 && y <= 480)
+	if (x >= (WIDTH - 200) / 2 && x <= (WIDTH - 200) / 2 + 100 && y >= 400 && y <= 480)
 	{
 		buttonsState["Play"] = FOCUS_OFF;
 		buttonsState["Quit"] = FOCUS_ON;
@@ -80,6 +81,6 @@ void	MainMenu::update(double)
 
 void	MainMenu::render(SDL_Renderer *renderer)
 {
-	label.render(540, 300, 2, "MainMenu", "Play", "Bangers", renderer, buttonsState["Play"]);
-	label.render(540, 400, 2, "MainMenu", "Quit", "Bangers", renderer, buttonsState["Quit"]);
+	label.render((WIDTH - 200) / 2, 300, 2, "MainMenu", "Play", "SIXTY", renderer, buttonsState["Play"]);
+	label.render((WIDTH - 200) / 2, 400, 2, "MainMenu", "Quit", "SIXTY", renderer, buttonsState["Quit"]);
 }
