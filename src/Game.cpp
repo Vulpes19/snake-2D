@@ -22,7 +22,7 @@ Game::Game(void) {
 	running = true;
 	TextureManager::getInstance()->loadTextures(renderer);
 	input = new InputManager();
-	StatesManager::getInstance()->addState(new GamePlay(input, renderer));
+	StatesManager::getInstance()->addState(new MainMenu());
 	InputObserver* stateObserver = dynamic_cast<InputObserver*>(StatesManager::getInstance()->getCurrentStateInstance());
 	if (stateObserver)
 		input->addObserver(stateObserver);
@@ -65,6 +65,7 @@ void    Game::update(void) {
 }
 
 void    Game::render(void) {
+	// exit(1);
     SDL_RenderClear(renderer);
 	STATES currentState = StatesManager::getInstance()->getCurrentState();
 	StatesManager::getInstance()->render(renderer);

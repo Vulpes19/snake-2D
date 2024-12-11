@@ -20,6 +20,7 @@ void	UILabel::deleteButtonType(std::string ID)
 		delete it->second;
 		labels.erase(ID);
 	}
+	std::cout << "THIS WAS DELETED" << std::endl;
 }
 
 void	UILabel::render(int x, int y, int textSize, std::string ID, std::string content, std::string font, SDL_Renderer* renderer, BUTTON_STATE state)
@@ -27,7 +28,7 @@ void	UILabel::render(int x, int y, int textSize, std::string ID, std::string con
 	auto label = labels.find(ID);
 	if (label == labels.end())
 		throw(ErrorHandler("Can't find label with ID: " + ID, __FILE__, __LINE__));
-    //coloring the button label
+	//coloring the button label
 	SDL_Rect rect = { x, y, label->second->width, label->second->height };
 	SDL_SetRenderDrawColor(renderer,
 		label->second->color.r,

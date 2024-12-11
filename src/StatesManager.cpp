@@ -17,15 +17,15 @@ StatesManager::~StatesManager(void)
 
 void	StatesManager::addState(GameState* state)
 {
-	std::cout << "adding state " << state->getStateName() << " " << states.size() << std::endl;
 	states.push_back(state);
-	std::cout << "after adding " << states.size() << std::endl;
+	std::cout << "number of states now: " << states.size() << std::endl;
 }
 
 void	StatesManager::removeState(InputManager *input)
 {
 	if (!states.empty())
 	{
+		states.back()->clean();
 		InputObserver* observer = dynamic_cast<InputObserver*>(states.back());
 		if (observer) {
 			input->eraseObserver(observer);
@@ -33,6 +33,8 @@ void	StatesManager::removeState(InputManager *input)
 		delete states.back();
 		states.pop_back();
 	}
+	std::cout << "state was erased" << std::endl;
+	std::cout << "number of states now: " << states.size() << std::endl;
 }
 
 void	StatesManager::removeState(int n, InputManager *input)

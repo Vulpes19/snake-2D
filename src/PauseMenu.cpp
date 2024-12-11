@@ -12,6 +12,11 @@ PauseMenu::PauseMenu(void)
 PauseMenu::~PauseMenu(void)
 {}
 
+void	PauseMenu::clean(void)
+{
+	label.deleteButtonType("PauseMenu");
+}
+
 void	PauseMenu::keyDown(SDL_Scancode key, double deltaTime, InputManager* input, SDL_Renderer*)
 {
 	if (InputDetector::getInstance()->isKeyPressed(key) && StatesManager::getInstance()->getCurrentState() == PauseMenuState)
@@ -62,10 +67,13 @@ void	PauseMenu::mouseMove(Uint8 mouseButton, InputManager* input, SDL_Renderer*)
 		buttonsState["Quit"] = FOCUS_ON;
 		if (mouseButton == SDL_BUTTON_LEFT)
 		{
+			std::cout << "im removing 2 states" << std::endl;
 			StatesManager::getInstance()->removeState(2, input);
-			//InputObserver* observer = dynamic_cast<InputObserver*>(StatesManager::getInstance()->getCurrentStateInstance());
-			//if (observer)
-				//input->addObserver(observer);
+			return ;
+			std::cout << "********** after **********"<< std::endl;
+			// InputObserver* observer = dynamic_cast<InputObserver*>(StatesManager::getInstance()->getCurrentStateInstance());
+			// if (observer)
+			// 	input->addObserver(observer);
 		}
 	}
 }
@@ -82,6 +90,6 @@ void	PauseMenu::update(double)
 
 void	PauseMenu::render(SDL_Renderer* renderer)
 {
-	label.render((WIDTH - 80) / 2, 300, 2, "PauseMenu", "Resume", "SIXTY", renderer, buttonsState["Resume"]);
-	label.render((WIDTH - 80) / 2, 400, 2, "PauseMenu", "Quit", "SIXTY", renderer, buttonsState["Quit"]);
+	label.render((WIDTH - 100) / 2, 300, 2, "PauseMenu", "Resume", "SIXTY", renderer, buttonsState["Resume"]);
+	label.render((WIDTH - 100) / 2, 400, 2, "PauseMenu", "Quit", "SIXTY", renderer, buttonsState["Quit"]);
 }

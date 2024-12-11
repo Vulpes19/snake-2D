@@ -19,6 +19,7 @@ class GameState
 		virtual void	handleInput(void) = 0;
 		virtual void	update(double = 0) = 0;
 		virtual void	render(SDL_Renderer *) = 0;
+		virtual void	clean(void) = 0;
 		enum STATES		getStateName(void) const { return (stateName); }
 	protected:
 		UILabel		label;

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "GameState.hpp"
 #include "InputObserver.hpp"
 #include "InputDetector.hpp"
@@ -16,6 +18,7 @@ public:
 	void mouseMove(Uint8, InputManager*, SDL_Renderer*) override;
 	void update(double = 0) override;
 	void render(SDL_Renderer*) override;
+	void clean(void) override;
 private:
 	std::map<std::string, BUTTON_STATE> buttonsState;
 };

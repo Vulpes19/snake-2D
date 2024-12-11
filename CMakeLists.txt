@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-
+set(CMAKE_BUILD_TYPE Debug)
 project(snake-2d)
 
 find_package(SDL2 CONFIG REQUIRED)
@@ -8,6 +8,12 @@ find_package(SDL2_ttf CONFIG REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
+
+IF    (CMAKE_COMPILER_IS_GNUCC)
+  SET (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -fexceptions")
+ELSEIF(MSVC71 OR MSVC80)
+  SET (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} /EHc-")
+ENDIF (CMAKE_COMPILER_IS_GNUCC)
 
 set(SOURCES
     src/main.cpp
@@ -25,6 +31,7 @@ set(SOURCES
     src/FontManager.cpp
     src/UILabel.cpp
     src/PauseMenu.cpp
+    src/MainMenu.cpp
 )
 
 add_executable(snake-2d ${SOURCES})

@@ -1,7 +1,8 @@
 #include "GamePlay.hpp"
 
-GamePlay::GamePlay(InputManager *input, SDL_Renderer *renderer)
+GamePlay::GamePlay(InputManager *input, SDL_Renderer *renderer) : input(input)
 {
+	std::cout << "gameplay menu is pushed" << std::endl;
 	stateName = GamePlayState;
 
 	grid = new Grid();
@@ -25,9 +26,24 @@ GamePlay::GamePlay(InputManager *input, SDL_Renderer *renderer)
 
 GamePlay::~GamePlay(void)
 {
-	label.deleteButtonType("GamePlay");
+	// InputObserver* observer = dynamic_cast<InputObserver*>(player);
+	// if (observer) {
+	// 	input->eraseObserver(observer);
+	// }
+	// label.deleteButtonType("GamePlay");
 	// delete grid;
 	// delete player;
+}
+
+void	GamePlay::clean(void)
+{
+	InputObserver* observer = dynamic_cast<InputObserver*>(player);
+	if (observer) {
+		input->eraseObserver(observer);
+	}
+	// delete grid;
+	// delete player;
+	label.deleteButtonType("GamePlay");
 }
 
 void	GamePlay::keyDown(SDL_Scancode key, double deltaTime, InputManager* input, SDL_Renderer* renderer)
