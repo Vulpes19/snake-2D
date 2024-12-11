@@ -16,6 +16,12 @@ Grid::Grid(void) {
         std::copy(temp.begin(), temp.end(), std::back_inserter(line));
         grid.push_back(line);
     }
+    file.close();
+}
+
+Grid::~Grid(void)
+{
+    
 }
 
 COLLISION    Grid::checkCollision(Vector playerPos) {

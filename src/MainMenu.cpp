@@ -12,6 +12,11 @@ MainMenu::MainMenu(void)
 MainMenu::~MainMenu(void)
 {}
 
+void	MainMenu::clean(void)
+{
+	label.deleteButtonType("MainMenu");
+}
+
 void	MainMenu::keyDown(SDL_Scancode key, double deltaTime, InputManager *input, SDL_Renderer* renderer)
 {
 	if (InputDetector::getInstance()->isKeyPressed(key) && StatesManager::getInstance()->getCurrentState() == MainMenuState)

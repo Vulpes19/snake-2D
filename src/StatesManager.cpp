@@ -25,6 +25,7 @@ void	StatesManager::removeState(InputManager *input)
 {
 	if (!states.empty())
 	{
+		states.back()->clean();
 		InputObserver* observer = dynamic_cast<InputObserver*>(states.back());
 		if (observer) {
 			input->eraseObserver(observer);

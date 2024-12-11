@@ -19,6 +19,7 @@ class GamePlay : public GameState, public InputObserver
 		void mouseMove(Uint8, InputManager*, SDL_Renderer*) override;
 		void update(double = 0) override;
 		void render(SDL_Renderer *) override;
+		void clean(void) override;
 	private:
 		Grid* 		grid = nullptr;
 		GameObject* player = nullptr;

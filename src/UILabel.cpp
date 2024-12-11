@@ -20,6 +20,7 @@ void	UILabel::deleteButtonType(std::string ID)
 		delete it->second;
 		labels.erase(ID);
 	}
+	std::cout << "THIS WAS DELETED" << std::endl;
 }
 
 void	UILabel::render(int x, int y, int textSize, std::string ID, std::string content, std::string font, SDL_Renderer* renderer, BUTTON_STATE state)

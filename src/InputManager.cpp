@@ -20,6 +20,8 @@ void	InputManager::eraseObserver(InputObserver* observer)
 	auto it = std::find(observers.begin(), observers.end(), observer);
     if (it != observers.end())
 	    observers.erase(it);
+	else
+		std::cout << "not found" << std::endl;
 	std::cout << "observer is erased !" << std::endl;
 	std::cout << "number of observers now: " << observers.size() << std::endl;
 }
