@@ -32,6 +32,7 @@ set(SOURCES
     src/UILabel.cpp
     src/PauseMenu.cpp
     src/MainMenu.cpp
+    src/GameOver.cpp
 )
 
 add_executable(snake-2d ${SOURCES})

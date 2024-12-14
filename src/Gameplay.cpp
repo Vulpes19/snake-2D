@@ -80,6 +80,15 @@ void	GamePlay::update(double deltaTime)
 {
 	grid->update();
 	player->update(score);
+	if (player->isWasted())
+	{
+		StatesManager::getInstance()->addState(new GameOver());
+		InputObserver* gameOverObserver = dynamic_cast<InputObserver*>(StatesManager::getInstance()->getCurrentStateInstance());
+			if (gameOverObserver)
+				input->addObserver(gameOverObserver);
+			else
+				throw(ErrorHandler("Can't cast state to an observer, causes the input to not work: ", __FILE__, __LINE__));
+	}
 }
 
 void	GamePlay::render(SDL_Renderer *renderer)

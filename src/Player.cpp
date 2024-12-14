@@ -45,8 +45,10 @@ void    Player::update(size_t &score) {
         score += 1;
     }
     else if (collisionType == COLLISION:: WALL)
+    {
+        wasted = true;
         return ;
-    
+    }
     switch (direction)
     {
     case DIRECTION::TOP:

@@ -55,6 +55,7 @@ void	PauseMenu::mouseMove(Uint8 mouseButton, InputManager* input, SDL_Renderer*)
 		if (mouseButton == SDL_BUTTON_LEFT)
 		{
 			StatesManager::getInstance()->removeState(input);
+			return ;
 			//std::cout << "replacing observer " << StatesManager::getInstance()->getCurrentState() << std::endl;
 			//InputObserver* observer = dynamic_cast<InputObserver*>(StatesManager::getInstance()->getCurrentStateInstance());
 			//if (observer)

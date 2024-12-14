@@ -8,6 +8,7 @@
 #include "Grid.hpp"
 #include "UILabel.hpp"
 #include "PauseMenu.hpp"
+#include "GameOver.hpp"
 
 class GamePlay : public GameState, public InputObserver
 {

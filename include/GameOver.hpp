@@ -1,0 +1,21 @@
+#pragma once
+
+#include "GameState.hpp"
+#include "InputObserver.hpp"
+#include "InputDetector.hpp"
+#include "StatesManager.hpp"
+
+class GameOver : public GameState, public InputObserver
+{
+	public:
+		GameOver(void);
+		~GameOver(void);
+		void handleInput(void) override;
+		void keyDown(SDL_Scancode, double, InputManager*, SDL_Renderer*) override;
+		void mouseMove(Uint8, InputManager*, SDL_Renderer*) override;
+		void update(double = 0) override;
+		void render(SDL_Renderer *) override;
+		void clean(void) override;
+	private:
+		std::map<std::string, BUTTON_STATE> buttonsState;
+};

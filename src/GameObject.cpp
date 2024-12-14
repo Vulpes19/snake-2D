@@ -25,3 +25,7 @@ void	GameObject::render(SDL_Renderer* renderer)
     dest.y = (int)position.getY();
     SDL_RenderCopyEx(renderer, texture, &src, &dest, 0, 0, SDL_FLIP_NONE);
 }
+
+bool    GameObject::isWasted(void) const {
+    return wasted;
+}

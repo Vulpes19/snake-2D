@@ -29,9 +29,10 @@ class Player : public InputObserver, public GameObject {
         void    render(SDL_Renderer *) override;
         void    addObserver(CollisionObserver *);
         void    eraseObserver(void);
+        bool    isWasted(void) const;
     protected:
         std::deque<Vector>  snakePos;
-        DIRECTION direction;
+        DIRECTION           direction;
         size_t              size = 1;
-        CollisionObserver* observer = nullptr;
+        CollisionObserver*  observer = nullptr;
 };

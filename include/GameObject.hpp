@@ -22,8 +22,10 @@ class GameObject
 		~GameObject(void);
 		virtual void	update(size_t &);
 		virtual void	render(SDL_Renderer *);
+        bool    isWasted(void) const;
 	protected:
 		Vector	position;
 		Vector	velocity;
 		std::string	textureName;
+        bool		wasted = false;
 };
